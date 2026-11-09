@@ -1,0 +1,13 @@
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "4000:4000"
+
+  sync:
+    build: .
+    command: ["node", "src/scripts/fetch-logs.mjs"]
+    restart: unless-stopped
+    env_file: .env
